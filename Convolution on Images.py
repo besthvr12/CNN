@@ -35,11 +35,6 @@ def convolve(image, K):
 
  # return the output image
    return output
-# construct the argument parse and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True,
-help="path to the input image")
-args = vars(ap.parse_args())
 
 
 # construct average blurring kernels used to smooth an image
@@ -72,10 +67,7 @@ emboss = np.array((
 [-2, -1, 0],
 [-1, 1, 1],
 [0, 1, 2]), dtype="int")
-harsh = np.array((
-[5, -2, 0],
-[-4, -2, -6],
-[0, 3, 4]), dtype="int")
+
 # construct the kernel bank, a list of kernels we’re going to apply
 # using both our custom ‘convole‘ function and OpenCV’s ‘filter2D‘
 # function
@@ -86,8 +78,7 @@ kernelBank = (
 ("laplacian", laplacian),
 ("sobel_x", sobelX),
 ("sobel_y", sobelY),
-("emboss", emboss),
-("harsh",harsh))
+("emboss", emboss))
 
 # load the input image and convert it to grayscale
 image = cv2.imread('Dog.png')
